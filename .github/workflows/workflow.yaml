@@ -1,0 +1,18 @@
+jobs:
+  run:
+    name: Verify
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - name: Pull Prerequisites
+        run: sudo apt-get update && sudo apt-get install -y libhwloc15 unrar
+      - name: Run Tests
+        run: ./test/build
+
+name: Test
+
+on:
+  schedule:
+    - cron: "55 */6 * * *"
